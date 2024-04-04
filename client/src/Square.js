@@ -14,7 +14,6 @@ const Square = ({
                     currentPlayer,
                     setCurrentPlayer,
                 }) => {
-    const [icon, setIcon] = useState(null);
 
     const clickOnSquare = () => {
         if (playingAs !== currentPlayer) {
@@ -25,13 +24,14 @@ const Square = ({
             return;
         }
 
-        if (!icon) {
-            if (currentPlayer === "circle") {
-                setIcon("O");
-            } else {
-                setIcon("X");
-            }
+        console.log("currentPlayer", currentPlayer);
+        console.log("playingAs", playingAs);
+        console.log("currentElement", currentElement);
+        console.log("finishedArrayState", finishedArrayState);
+        console.log("finishedState", finishedState);
+        console.log("gameState", gameState);
 
+        if (currentElement !== "circle" && currentElement !== "cross") {
             const myCurrentPlayer = currentPlayer;
             socket.emit("playerMoveFromClient", {
                 state: {
@@ -58,6 +58,7 @@ const Square = ({
             className={`
             square 
             ${finishedState ? "not-allowed" : ""}
+            ${currentElement === "circle" || currentElement === "cross" ? "not-allowed" : ""}
             ${currentPlayer !== playingAs ? "not-allowed" : ""}
             ${finishedArrayState.includes(id) ? finishedState + "-won" : ""}
             `}
@@ -66,7 +67,7 @@ const Square = ({
                 ? "O"
                 : currentElement === "cross"
                     ? "X"
-                    : icon}
+                    : null}
         </div>
     );
 };
