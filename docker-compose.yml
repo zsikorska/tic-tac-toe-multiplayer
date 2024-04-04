@@ -1,0 +1,26 @@
+name: tic-tac-toe
+
+services:
+  backend:
+    build: ./node-server
+    ports:
+      - "3001:3001"
+    networks:
+      - net
+    environment:
+      - name=value
+    
+  frontend:
+    build: ./client
+    ports:
+      - "3000:3000"
+    networks:
+      - net
+    environment:
+      - name=value
+    depends_on:
+      - backend
+
+networks:
+  net:
+    driver: bridge
