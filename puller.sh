@@ -9,7 +9,7 @@ fi
 
 git pull
 
-docker build -t frontend:latest tic-tac-toe-frontend
-docker build -t backend:latest tic-tac-toe-backend
+docker build -t frontend:latest client
+docker build -t backend:latest node-server
 
 docker compose up -d
