@@ -2,10 +2,10 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 
 const httpServer = createServer();
-httpServer.listen(3001);
+httpServer.listen(3000);
 const io = new Server(httpServer, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: process.env.CLIENT_URL || "http://localhost:3001",
         methods: ["GET", "POST"]
     },
 });

@@ -123,7 +123,7 @@ const App = () => {
 
 
     function connectToServer() {
-        const newSocket = io("http://localhost:3001", {
+        const newSocket = io(process.env.SERVER_URL || "http://localhost:3000", {
             autoConnect: true,
         });
 

@@ -2,22 +2,22 @@ name: tic-tac-toe
 
 services:
   backend:
-    build: ./node-server
-    ports:
-      - "3001:3001"
-    networks:
-      - net
-    environment:
-      - name=value
-    
-  frontend:
-    build: ./client
+    image: backend:latest
     ports:
       - "3000:3000"
     networks:
       - net
     environment:
-      - name=value
+      - CLIENT_URL=https://54.82.5.44:443
+    
+  frontend:
+    image: frontend:latest
+    ports:
+      - "443:443"
+    networks:
+      - net
+    environment:
+      -SERVER:URL=https://54.82.5.44:3000
     depends_on:
       - backend
 
