@@ -1,11 +1,13 @@
 FROM node:alpine
 
+ENV PORT 80
+
 WORKDIR /app
 
 COPY . /app
 
-RUN npm install
+RUN npm install --production
 
-EXPOSE 3000
+EXPOSE 80
 
 CMD ["npm", "start"]
